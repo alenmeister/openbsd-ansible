@@ -1,42 +1,12 @@
-- name: Upgrade all servers to next stable release
-  hosts: VMs
+# This playbook upgrades all servers to the next stable
+# release, installs binary patches and updates all packages
+# to the latest version
+- hosts: VMs
   tasks:
     - name: Ping hosts
       ansible.builtin.ping:
       tags:
         - ping
-
-    - name: Fetch upgrade files
-      community.general.sysupgrade:
-        fetch_only: true
-      become: true
-      register: sysupgrade
-
-    - name: Print output from sysupgrade
-      ansible.builtin.debug:
-        msg: '{{ sysupgrade.stdout_lines }}'
-      tags:
-        - debug
-
-    - name: Find file sets for Xenocara and games
-      ansible.builtin.find:
-        paths: /home/_sysupgrade
-        patterns: 'game*.tgz,x*.tgz'
-      register: list_of_sets
-      tags: remove_sets
-
-    - name: Remove file sets for Xenocara and games
-      ansible.builtin.file:
-        path: '{{ item.path }}'
-        state: absent
-      become: true
-      with_items: '{{ list_of_sets.files }}'
-      tags:
-        - remove_sets
-
-    - name: Reboot to apply upgrade
-      ansible.builtin.reboot:
-      become: true
-      when: sysupgrade.changed
-  vars:
-    ansible_python_interpreter: /usr/local/bin/python3.10
+  roles:
+    - upgrade
+    - update

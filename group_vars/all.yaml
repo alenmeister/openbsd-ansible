@@ -1,0 +1,4 @@
+# Common variables related to all servers
+ansible_python_interpreter: '/usr/local/bin/python3.10'
+ansible_python_interpret_fallback: ['/usr/local/bin/python', '/usr/local/bin/python3']
+mirror_site: 'https://mirror.edgecast.com/pub/OpenBSD'

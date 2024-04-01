@@ -1,0 +1,7 @@
+- name: Update all packages currently installed
+  community.general.openbsd_pkg:
+    name: '*'
+    state: latest
+  register: pkg
+  tags:
+    - update

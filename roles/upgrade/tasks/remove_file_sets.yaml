@@ -1,0 +1,16 @@
+- name: Locate file sets for Xenocara and games
+  ansible.builtin.find:
+    paths: /home/_sysupgrade
+    patterns: 'game*.tgz,x*.tgz'
+  register: list_of_sets
+  tags: 
+    - remove_sets
+
+- name: Remove file sets
+  ansible.builtin.file:
+    path: '{{ item.path }}'
+    state: absent
+  become: true
+  with_items: '{{ list_of_sets.files }}'
+  tags:
+    - remove_sets

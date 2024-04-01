@@ -1,0 +1,13 @@
+- name: Install patches
+  community.general.syspatch:
+  become: true
+  register: syspatch
+  tags:
+    - syspatch
+
+- name: Reboot after patching
+  ansible.builtin.reboot:
+  become: true
+  when: syspatch.reboot_needed
+  tags:
+    - syspatch_reboot

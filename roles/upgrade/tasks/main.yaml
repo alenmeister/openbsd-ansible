@@ -1,0 +1,20 @@
+- name: Download file sets for next stable release
+  ansible.builtin.import_tasks:
+    file: download_file_sets.yaml
+
+- name: Print output from sysupgrade
+  ansible.builtin.debug:
+    msg: '{{ sysupgrade.stdout_lines }}'
+  tags:
+    - sysupgrade_debug
+
+- name: Remove file sets for Xenocara and games
+  ansible.builtin.import_tasks:
+    file: remove_file_sets.yaml
+
+- name: Reboot to initialize upgrade
+  ansible.builtin.reboot:
+  become: true
+  when: sysupgrade.changed
+  tags:
+    - sysupgrade_reboot

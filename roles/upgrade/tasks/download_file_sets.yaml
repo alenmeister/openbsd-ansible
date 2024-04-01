@@ -1,0 +1,6 @@
+- name: Download file sets
+  community.general.sysupgrade:
+    fetch_only: true
+    installurl: '{{ mirror_site }}'
+  become: true
+  register: sysupgrade

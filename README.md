@@ -1,16 +1,24 @@
 # Ansible playbook for OpenBSD
 
-This playbook upgrades OpenBSD hosts to the next stable release, installs binary\
+This playbook upgrades OpenBSD hosts to the next stable release, installs binary
 patches and updates all packages to the latest version. 
 
 ## Requirements
 The following requirements apply for each host:
 1. Latest version of Python installed
 2. Your public SSH key is added to the `authorized_keys` file
-3. Configuraton file for doas(1) is present
+3. Configuraton file for [(doas(1)](https://man.openbsd.org/doas) is present
+
+## Inventory
+Before executing any of the below commands, you should update and organize your inventory 
+with your managed nodes by either IP address or FQDN. The inventory file in this repo is 
+written in YAML which lets you declare unique names per host.
 
 ## Usage
 ```sh
+# Ping the VMs group in your inventory
+ansible VMs -m ping
+
 # Run all tasks on all hosts
 ansible-playbook playbook.yaml
 

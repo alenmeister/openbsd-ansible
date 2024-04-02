@@ -10,9 +10,14 @@ The following requirements apply for each host:
 3. Configuraton file for [(doas(1)](https://man.openbsd.org/doas) is present
 
 ## Inventory
-Before executing any of the below commands, you should update and organize your inventory 
-with your managed nodes by either IP address or FQDN. The inventory file in this repo is 
-written in YAML which lets you declare unique names per host.
+Organize and update your inventory with your managed nodes by either IP address or FQDN. 
+The inventory file in this repo is written in YAML which lets you declare unique names per host.
+
+## Tags
+All tasks are tagged with an appropriate name for ease of use (see below usage example).\
+This way, you can easily run any task(s) based on your needs on any node(s).
+
+To list all defined tags, run: `ansible-playbook playbook.yaml --list-tags`
 
 ## Usage
 ```sh
@@ -28,9 +33,3 @@ ansible-playbook playbook.yaml -l vm1
 # Run a set of tasks on all hosts
 ansible-playbook playbook.yaml -t syspatch,syspatch_debug,syspatch_reboot
 ```
-
-## Tags
-All tasks are tagged with an appropriate name for ease of use (see above usage example).\
-This way, you can easily run any task(s) based on your needs on any host(s).
-
-To list all defined tags, run: `ansible-playbook playbook.yaml --list-tags`

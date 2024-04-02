@@ -2,6 +2,7 @@
   community.general.openbsd_pkg:
     name: '*'
     state: latest
+  become: true
   register: pkg
   tags:
-    - update
+    - update_packages

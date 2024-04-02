@@ -2,11 +2,6 @@
 # release, installs binary patches and updates all packages
 # to the latest version
 - hosts: VMs
-  tasks:
-    - name: Ping hosts
-      ansible.builtin.ping:
-      tags:
-        - ping
   roles:
     - upgrade
     - update

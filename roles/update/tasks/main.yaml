@@ -2,19 +2,6 @@
   ansible.builtin.import_tasks:
     file: install_patches.yaml
 
-- name: Print output from syspatch
-  ansible.builtin.debug:
-    msg: '{{ syspatch.stdout_lines }}'
-  when: syspatch.stdout != ""
-  tags:
-    - syspatch_debug
-
 - name: Update all packages
   ansible.builtin.import_tasks:
     file: update_packages.yaml
-
-- name: Print output from pkg_add
-  ansible.builtin.debug:
-    msg: '{{ pkg.stdout_lines }}'
-  tags:
-    - pkg_debug

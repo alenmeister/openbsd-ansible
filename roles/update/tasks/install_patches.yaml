@@ -5,6 +5,13 @@
   tags:
     - syspatch
 
+- name: Print output from syspatch
+  ansible.builtin.debug:
+    msg: '{{ syspatch.stdout_lines }}'
+  when: syspatch.stdout != ""
+  tags:
+    - syspatch_debug
+
 - name: Reboot after patching
   ansible.builtin.reboot:
   become: true

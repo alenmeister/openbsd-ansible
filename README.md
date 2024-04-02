@@ -7,17 +7,7 @@ patches and updates all packages to the latest version.
 The following requirements apply for each host:
 1. Latest version of Python installed
 2. Your public SSH key is added to the `authorized_keys` file
-3. Configuraton file for [(doas(1)](https://man.openbsd.org/doas) is present
-
-## Inventory
-Organize and update your inventory with your managed nodes by either IP address or FQDN. 
-The inventory file in this repo is written in YAML which lets you declare unique names per host.
-
-## Tags
-All tasks are tagged with an appropriate name for ease of use (see below usage example).\
-This way, you can easily run any task(s) based on your needs on any node(s).
-
-To list all defined tags, run: `ansible-playbook playbook.yaml --list-tags`
+3. Configuraton file for [doas(1)](https://man.openbsd.org/doas) is present
 
 ## Usage
 ```sh
@@ -33,3 +23,13 @@ ansible-playbook playbook.yaml -l vm1
 # Run a set of tasks on all hosts
 ansible-playbook playbook.yaml -t syspatch,syspatch_debug,syspatch_reboot
 ```
+
+## Inventory
+Organize and update your inventory with your managed nodes by either IP address or FQDN. 
+The inventory file in this repo is written in YAML which lets you declare unique names per host.
+
+## Tags
+All tasks are tagged with an appropriate name for ease of use (see above usage example).\
+This way, you can easily run any task(s) based on your needs on any host(s).
+
+To list all defined tags, run: `ansible-playbook playbook.yaml --list-tags`

@@ -4,3 +4,5 @@
     installurl: '{{ mirror_site }}'
   become: true
   register: sysupgrade
+  tags:
+    - sysupgrade

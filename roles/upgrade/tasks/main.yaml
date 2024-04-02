@@ -11,6 +11,8 @@
 - name: Remove file sets for Xenocara and games
   ansible.builtin.import_tasks:
     file: remove_file_sets.yaml
+  tags:
+    - sysupgrade
 
 - name: Reboot to initialize upgrade
   ansible.builtin.reboot:
